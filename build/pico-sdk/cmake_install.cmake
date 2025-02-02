@@ -39,16 +39,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/davi/Projects/matrix_leds/build/pico-sdk/tools/cmake_install.cmake")
+  include("/home/davi/Projects/Tarefa_1_interrupcao/build/pico-sdk/tools/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/davi/Projects/matrix_leds/build/pico-sdk/src/cmake_install.cmake")
+  include("/home/davi/Projects/Tarefa_1_interrupcao/build/pico-sdk/src/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/davi/Projects/matrix_leds/build/pico-sdk/docs/cmake_install.cmake")
+  include("/home/davi/Projects/Tarefa_1_interrupcao/build/pico-sdk/docs/cmake_install.cmake")
 endif()
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/davi/Projects/matrix_leds
+# Install script for directory: /home/davi/Projects/Tarefa_1_interrupcao
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/davi/Projects/matrix_leds/build/pico-sdk/cmake_install.cmake")
+  include("/home/davi/Projects/Tarefa_1_interrupcao/build/pico-sdk/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/davi/Projects/matrix_leds/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/davi/Projects/Tarefa_1_interrupcao/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
