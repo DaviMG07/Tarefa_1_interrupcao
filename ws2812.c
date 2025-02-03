@@ -1,3 +1,9 @@
+/*
+ * Autor: Davi
+ * Projeto baseado no código do Professor Wilton Lacerdo, apresentado na aula do dia 27.
+ * Original: https://github.com/wiltonlacerda/EmbarcaTechU4C4/tree/main/06_ws2812_Escolha
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "pico/stdlib.h"
@@ -20,15 +26,6 @@ typedef uint32_t Color;
 // Buffer que representa o estado de cada LED
 bool LED_BUFFER[PIXELS] = {0};
 
-// Mapeamento dos LEDs para formar uma matriz 5x5, definindo a ordem física dos LEDs
-uint8_t LED_REFERENCE[5][5] = {
-    {24, 23, 22, 21, 20},
-    {15, 16, 17, 18, 19},
-    {14, 13, 12, 11, 10},
-    {5,  6,  7,  8,  9},
-    {4,  3,  2,  1,  0}
-};
-
 // Constantes utilizadas para definir os padrões dos dígitos a serem exibidos
 const uint8_t full     = 0b11111;
 const uint8_t right    = 0b00001;
@@ -37,18 +34,18 @@ const uint8_t border   = 0b10001;
 const uint8_t center_1 = 0b01110;
 const uint8_t center_2 = 0b00100;
 
-// Padrões de exibição dos dígitos de 0 a 9 em uma matriz 5x5
+// Padrões de exibição dos dígitos de 0 a 9 em uma matriz 5x5 (as colunas são representadas pelos primeiros 5 bits dos numeros)
 const uint8_t numbers[10][5] = {
-    {full,    border, border, border, full},
-    {center_2, 3 << 2, center_2, center_2, center_1},
-    {center_1, (right << 1) | left, center_2, right << 3, full},
-    {full,    right,  0b00111, right,  full},
-    {border,  border, full,    right,  right},
-    {full,    left,   full,    right,  full},
-    {full,    left,   full,    border, full},
-    {full,    right,  right,   right,  right},
-    {full,    border, full,    border, full},
-    {full,    border, full,    right,  right}
+    {full,    border, border, border, full}, // 0
+    {center_2, 3 << 2, center_2, center_2, center_1}, // 1
+    {center_1, (right << 1) | left, center_2, right << 3, full}, // 2 
+    {full,    right,  0b00111, right,  full}, // 3
+    {border,  border, full,    right,  right}, // 4
+    {full,    left,   full,    right,  full}, // 5
+    {full,    left,   full,    border, full}, // 6
+    {full,    right,  right,   right,  right}, // 7
+    {full,    border, full,    border, full}, // 8
+    {full,    border, full,    right,  right} // 9
 };
 
 // Variáveis globais para controle da lógica dos botões e tempo
@@ -68,6 +65,15 @@ static inline void put_pixel(Color color) {
  * Utiliza o mapeamento definido em LED_REFERENCE para posicionar os bits corretamente.
  */
 void frame_to_led_buffer(const uint8_t frame[5]) {
+    // Mapeamento dos LEDs para formar uma matriz 5x5, definindo a ordem física dos LEDs
+    const uint8_t LED_REFERENCE[5][5] = {
+        {24, 23, 22, 21, 20},
+        {15, 16, 17, 18, 19},
+        {14, 13, 12, 11, 10},
+        {5,  6,  7,  8,  9},
+        {4,  3,  2,  1,  0}
+    };
+
     for (int row = 0; row < 5; row++) {
         for (int col = 0; col < 5; col++) {
             LED_BUFFER[LED_REFERENCE[row][col]] = (frame[row] & (1 << (4 - col))) != 0;
